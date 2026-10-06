@@ -1,0 +1,335 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Hammad Butt | Video Editor Portfolio</title>
+    <style>
+        /* Modern Reset & Base Styles */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            scroll-behavior: smooth;
+        }
+
+        body {
+            background-color: #0b0c10;
+            color: #c5c6c7;
+            overflow-x: hidden;
+        }
+
+        /* Vibrant Gradient Elements */
+        :root {
+            --primary-gradient: linear-gradient(135deg, #6f42c1, #007bff, #00f2fe);
+            --accent-glow: 0 0 20px rgba(0, 242, 254, 0.6);
+        }
+
+        /* Navigation Bar */
+        nav {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            background: rgba(11, 12, 16, 0.95);
+            backdrop-filter: blur(10px);
+            padding: 1.2rem 10%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            z-index: 1000;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+        }
+
+        .logo {
+            font-size: 1.5rem;
+            font-weight: 800;
+            background: var(--primary-gradient);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .nav-links {
+            display: flex;
+            list-style: none;
+            gap: 2rem;
+        }
+
+        .nav-links a {
+            color: #c5c6c7;
+            text-decoration: none;
+            font-size: 0.95rem;
+            font-weight: 500;
+            transition: color 0.3s;
+        }
+
+        .nav-links a:hover {
+            color: #00f2fe;
+            text-shadow: var(--accent-glow);
+        }
+
+        /* Hero Section */
+        header {
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            padding: 0 1rem;
+            position: relative;
+        }
+
+        header::before {
+            content: '';
+            position: absolute;
+            width: 300px;
+            height: 300px;
+            background: radial-gradient(circle, rgba(0,242,254,0.15) 0%, rgba(0,0,0,0) 70%);
+            top: 20%;
+            left: 15%;
+            z-index: -1;
+        }
+
+        .hero-title {
+            font-size: 3.5rem;
+            font-weight: 800;
+            color: #ffffff;
+            margin-bottom: 0.5rem;
+        }
+
+        .hero-gradient-text {
+            background: var(--primary-gradient);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .hero-tagline {
+            font-size: 1.4rem;
+            margin-bottom: 2rem;
+            color: #a4a6a8;
+            font-weight: 400;
+        }
+
+        .btn-cta {
+            background: var(--primary-gradient);
+            color: #ffffff;
+            padding: 0.8rem 2rem;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: 600;
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+
+        .btn-cta:hover {
+            transform: translateY(-3px);
+            box-shadow: var(--accent-glow);
+        }
+
+        /* Portfolio Main Grid Sections */
+        section {
+            padding: 6rem 10% 2rem 10%;
+            min-height: 80vh;
+        }
+
+        .section-title {
+            font-size: 2rem;
+            font-weight: 700;
+            color: #ffffff;
+            margin-bottom: 2.5rem;
+            position: relative;
+            display: inline-block;
+        }
+
+        .section-title::after {
+            content: '';
+            position: absolute;
+            bottom: -8px;
+            left: 0;
+            width: 50%;
+            height: 4px;
+            background: var(--primary-gradient);
+            border-radius: 2px;
+        }
+
+        /* Video Container Grid (Horizontal/16:9) */
+        .video-grid-horizontal {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(450px, 1fr));
+            gap: 2.5rem;
+        }
+
+        /* Video Container Grid (Vertical/9:16) */
+        .video-grid-vertical {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+            gap: 2rem;
+        }
+
+        .video-card {
+            background: #1f2833;
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.3);
+            border: 1px solid rgba(255,255,255,0.03);
+            transition: transform 0.3s;
+        }
+
+        .video-card:hover {
+            transform: translateY(-5px);
+            border-color: #00f2fe;
+        }
+
+        /* Responsive Iframe Scaling */
+        .video-wrapper {
+            position: relative;
+            width: 100%;
+            background: #000;
+        }
+
+        .video-wrapper.horizontal {
+            padding-bottom: 56.25%; /* 16:9 Aspect Ratio */
+        }
+
+        .video-wrapper.vertical {
+            padding-bottom: 177.77%; /* 9:16 Aspect Ratio */
+        }
+
+        .video-wrapper iframe {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            border: 0;
+        }
+
+        .video-info {
+            padding: 1.2rem;
+        }
+
+        .video-info h3 {
+            color: #ffffff;
+            margin-bottom: 0.5rem;
+            font-size: 1.1rem;
+        }
+
+        .video-info p {
+            font-size: 0.88rem;
+            color: #949698;
+            line-height: 1.4;
+        }
+
+        /* Footer Section */
+        footer {
+            background: #0b0c10;
+            text-align: center;
+            padding: 3rem 1rem;
+            margin-top: 4rem;
+            border-top: 1px solid rgba(255,255,255,0.05);
+        }
+
+        footer p {
+            font-size: 0.9rem;
+            color: #666;
+        }
+
+        /* Mobile Optimization Fixes */
+        @media (max-width: 768px) {
+            .nav-links { display: none; }
+            .hero-title { font-size: 2.5rem; }
+            .video-grid-horizontal { grid-template-columns: 1fr; }
+            section { padding: 4rem 5%; }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Sticky Header Navigation -->
+    <nav>
+        <div class="logo">HB</div>
+        <ul class="nav-links">
+            <li><a href="#home">Home</a></li>
+            <li><a href="#long-form">Long-Form Content</a></li>
+            <li><a href="#short-form">Short-Form / Reels</a></li>
+        </ul>
+    </nav>
+
+    <!-- Main Hero Brand Introduction -->
+    <header id="home">
+        <h1 class="hero-title">Hi, I'm <span class="hero-gradient-text">Hammad Butt</span></h1>
+        <p class="hero-tagline">Professional Video Editor & Creative Storyteller</p>
+        <a href="#long-form" class="btn-cta">View My Work</a>
+    </header>
+
+    <!-- Section 1: Horizontal Videos -->
+    <section id="long-form">
+        <h2 class="section-title">Long-Form Content</h2>
+        <div class="video-grid-horizontal">
+            
+            <!-- Video Card 1 -->
+            <div class="video-card">
+                <div class="video-wrapper horizontal">
+                    <!-- REPLACE THE YT ID BELOW WITH YOUR ACTUAL UNLISTED/PUBLIC VIDEO LINK ID -->
+                    <iframe src="https://youtube.com" allowfullscreen></iframe>
+                </div>
+                <div class="video-info">
+                    <h3>Project Title One</h3>
+                    <p>Clean cuts, multi-cam pacing, and customized transitions tailored for high engagement retention.</p>
+                </div>
+            </div>
+
+            <!-- Video Card 2 -->
+            <div class="video-card">
+                <div class="video-wrapper horizontal">
+                    <iframe src="https://youtube.com" allowfullscreen></iframe>
+                </div>
+                <div class="video-info">
+                    <h3>Project Title Two</h3>
+                    <p>Advanced color grading and sound design layouts to create immersive visual narratives.</p>
+                </div>
+            </div>
+
+        </div>
+    </section>
+
+    <!-- Section 2: Vertical Content -->
+    <section id="short-form">
+        <h2 class="section-title">Short-Form (TikToks & Reels)</h2>
+        <div class="video-grid-vertical">
+            
+            <!-- Vertical Video Card 1 -->
+            <div class="video-card">
+                <div class="video-wrapper vertical">
+                    <!-- REPLACE WITH THE YT SHORT OR VERTICAL VIMEO ID LINK -->
+                    <iframe src="https://youtube.com" allowfullscreen></iframe>
+                </div>
+                <div class="video-info">
+                    <h3>9:16 Edit Hook One</h3>
+                    <p>Fast-paced social edit featuring dynamic text animations and snappy pacing.</p>
+                </div>
+            </div>
+
+            <!-- Vertical Video Card 2 -->
+            <div class="video-card">
+                <div class="video-wrapper vertical">
+                    <iframe src="https://youtube.com" allowfullscreen></iframe>
+                </div>
+                <div class="video-info">
+                    <h3>9:16 Edit Hook Two</h3>
+                    <p>Sound FX intensive transition layout optimized for mobile social feeds.</p>
+                </div>
+            </div>
+
+        </div>
+    </section>
+
+    <!-- Simple Bottom Footer Context -->
+    <footer>
+        <p>&copy; 2026 Hammad Butt. Powered by clear storytelling edits.</p>
+    </footer>
+
+</body>
+</html>
